@@ -11,15 +11,15 @@ import SwiftUI
 // modifier --> applied on existing virew and return an new view
 struct DefaultButtonViewModifer: ViewModifier{
     
-    let backgroundColor: Color
-    let foregroundColor: Color
+    let bgColor: Color
+    let fgColor: Color
 
     func body(content: Content) -> some View {
         content
-            .font(.headline)
-            .frame(maxWidth: .infinity, minHeight: 40)
-            .background(backgroundColor)
-            .foregroundColor(foregroundColor)
+            .font(.title2).fontWeight(.bold)
+            .frame(maxWidth: .infinity, minHeight: 50)
+            .background(bgColor)
+            .foregroundColor(fgColor)
             .cornerRadius(10)
             .shadow(radius: 10)
             .padding(20)
@@ -27,16 +27,21 @@ struct DefaultButtonViewModifer: ViewModifier{
 }
 
 extension View{
-    func withDefaultButtonFormatting(backgroundColor: Color = .blue, foregroundColor: Color = .white) -> some View {
-        modifier(DefaultButtonViewModifer(backgroundColor: backgroundColor, foregroundColor: foregroundColor))
+    func withDefaultButtonFormatting(bgColor: Color = .blue, fgColor: Color = .white) -> some View {
+        modifier(DefaultButtonViewModifer(bgColor: bgColor, fgColor: fgColor))
     }
 }
 
 struct ViewModiferBootcamp: View {
     var body: some View {
         VStack{
+            //without using extension
+            Text("Button")
+                .modifier(DefaultButtonViewModifer(bgColor: .black, fgColor: .white))
+            
+            // when used after extension 
             Text("LogIn")
-                .withDefaultButtonFormatting(backgroundColor: .orange, foregroundColor: .white)
+                .withDefaultButtonFormatting(bgColor: .orange, fgColor: .white)
             
             Text("LogOut")
                 .withDefaultButtonFormatting()
