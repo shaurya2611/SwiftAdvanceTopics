@@ -27,7 +27,7 @@ struct DefaultButtonViewModifer: ViewModifier{
 }
 
 extension View{
-    func withDefaultButtonFormatting(backgroundColor: Color, foregroundColor: Color) -> some View {
+    func withDefaultButtonFormatting(backgroundColor: Color = .blue, foregroundColor: Color = .white) -> some View {
         modifier(DefaultButtonViewModifer(backgroundColor: backgroundColor, foregroundColor: foregroundColor))
     }
 }
@@ -35,7 +35,13 @@ extension View{
 struct ViewModiferBootcamp: View {
     var body: some View {
         VStack{
-            Text("LogIn").withDefaultButtonFormatting(backgroundColor: .blue, foregroundColor: .white)
+            Text("LogIn")
+                .withDefaultButtonFormatting(backgroundColor: .orange, foregroundColor: .white)
+            
+            Text("LogOut")
+                .withDefaultButtonFormatting()
+            
+            
         }
     }
 }
